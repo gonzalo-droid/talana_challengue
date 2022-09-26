@@ -23,7 +23,7 @@ object HomeReducer {
     fun selectEffect(effect: HomeEffect) {
         when (effect) {
             is HomeEffect.ShowMessageFailure -> viewState.messageFailure(effect.failure)
-            else -> {}
+            is HomeEffect.Logout -> viewState.logout()
         }
     }
 }

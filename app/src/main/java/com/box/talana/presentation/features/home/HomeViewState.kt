@@ -9,7 +9,8 @@ interface HomeViewState {
 
     fun loading()
 
-    fun detailActivity()
+    fun logout()
+
 
     fun listFeed(data : List<Feed>)
 

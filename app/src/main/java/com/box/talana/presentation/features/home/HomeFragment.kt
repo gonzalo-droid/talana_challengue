@@ -10,10 +10,12 @@ import com.box.talana.R
 import com.box.talana.BR
 import com.box.talana.core.extension.dataBinding
 import com.box.talana.core.extension.lifecycleScopeCreate
+import com.box.talana.core.extension.startNewActivity
 import com.box.talana.core.funtional.Failure
 import com.box.talana.databinding.FragmentHomeBinding
 import com.box.talana.domian.model.Feed
 import com.box.talana.presentation.base.BaseFragmentWithViewModel
+import com.box.talana.presentation.features.auth.LoginActivity
 import com.box.talana.presentation.model.MessageDesign
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,6 +48,10 @@ class HomeFragment :
         recycler = binding.recycler
 
         recycler.layoutManager = LinearLayoutManager(requireActivity())
+
+        binding.topbar.logoutBtn.setOnClickListener {
+            viewModel.setEvent(HomeEvent.LogoutClick)
+        }
 
 
 
@@ -83,8 +89,10 @@ class HomeFragment :
         showLoadingDialog()
     }
 
-    override fun detailActivity() {
-
+    override fun logout() {
+        closeLoadingDialog()
+        requireContext().startNewActivity<LoginActivity>()
+        requireActivity().finishAffinity()
     }
 
     override fun listFeed(data: List<Feed>) {

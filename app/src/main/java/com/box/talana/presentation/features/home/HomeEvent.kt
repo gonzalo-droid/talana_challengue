@@ -9,4 +9,7 @@ sealed class HomeEvent : UiEvent {
 
     object ShowFeedClick : HomeEvent()
 
+    object LogoutClick : HomeEvent()
+
+
 }

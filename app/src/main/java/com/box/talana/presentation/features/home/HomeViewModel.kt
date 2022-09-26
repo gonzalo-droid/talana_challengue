@@ -4,6 +4,7 @@ import com.box.talana.core.funtional.Failure
 import com.box.talana.domian.model.Feed
 import com.box.talana.domian.useCases.BaseUseCase
 import com.box.talana.domian.useCases.DoLoginUseCase
+import com.box.talana.domian.useCases.DoLogoutUseCase
 import com.box.talana.domian.useCases.GetFeedUseCase
 import com.box.talana.presentation.base.BaseViewModel
 import com.box.talana.presentation.model.User
@@ -14,7 +15,9 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel
 @Inject constructor(
-    private val getFeedUseCase: GetFeedUseCase
+    private val getFeedUseCase: GetFeedUseCase,
+    private val doLogoutUseCase: DoLogoutUseCase
+
 ) : BaseViewModel<HomeEvent, HomeState, HomeEffect>() {
 
     override fun createInitialState(): HomeState {
@@ -24,7 +27,17 @@ class HomeViewModel
     override fun handleEvent(event: HomeEvent) {
         when (event) {
             HomeEvent.GetFeedClick -> lisFeed()
-            HomeEvent.ShowFeedClick -> {}
+            HomeEvent.LogoutClick -> logout()
+        }
+    }
+
+    private fun logout() {
+        setState { HomeState.Loading }
+
+        doLogoutUseCase(
+            BaseUseCase.None()
+        ) {
+            it.either(::handleFailure, ::handleLogout)
         }
     }
 
@@ -46,6 +59,10 @@ class HomeViewModel
 
     private fun handleFeed(data: List<Feed>) {
         setState { HomeState.ListFeed(data = data) }
+    }
+
+    private fun handleLogout(value : Boolean) {
+        setEffect { HomeEffect.Logout }
     }
 
     companion object Events {

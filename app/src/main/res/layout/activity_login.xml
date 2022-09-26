@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -59,7 +58,7 @@
                 android:layout_marginTop="84dp"
                 android:paddingRight="@dimen/dimen5"
                 android:text="Bienvenido a"
-                android:textSize="@dimen/dimen20"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/nameText"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -73,9 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimen50"
                 android:paddingLeft="@dimen/dimen1"
-                android:text="Talana"
-                android:textFontWeight="900"
-                android:textSize="@dimen/dimen45"
+                android:text="@string/talana_name"
+                android:textSize="45sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/documentTv"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -99,7 +97,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
                     android:text="@={loginViewModel.user.email}" />
 
             </com.google.android.material.textfield.TextInputLayout>

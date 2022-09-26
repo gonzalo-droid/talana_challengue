@@ -9,4 +9,7 @@ sealed class HomeEffect : UiEffect {
     object ShowSuccess : HomeEffect()
 
     data class ShowMessageFailure constructor(val failure: Failure) : HomeEffect()
+
+
+    object Logout : HomeEffect()
 }

@@ -53,6 +53,7 @@ class TalanaRepositoryImpl
         }
     }
     override suspend fun logout(): Either<Failure, Boolean> {
+        preferences.sp.userToken=""
         preferences.sp.clearValues
         return Right(true)
     }
