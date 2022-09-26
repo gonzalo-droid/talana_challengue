@@ -1,7 +1,9 @@
 package com.box.talana.presentation.features.auth
 
 import com.box.talana.core.funtional.Failure
+import com.box.talana.domian.useCases.BaseUseCase
 import com.box.talana.domian.useCases.DoLoginUseCase
+import com.box.talana.domian.useCases.GetInitAppUseCase
 import com.box.talana.presentation.base.BaseViewModel
 import com.box.talana.presentation.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,6 +14,7 @@ import javax.inject.Inject
 class LoginViewModel
 @Inject constructor(
     private val doLoginUseCase: DoLoginUseCase,
+    private val getInitAppUseCase: GetInitAppUseCase
 ) : BaseViewModel<LoginEvent, LoginState, LoginEffect>() {
 
     val user = User()
@@ -23,11 +26,14 @@ class LoginViewModel
     override fun handleEvent(event: LoginEvent) {
         when (event) {
             LoginEvent.LoginClicked -> verifyLogin()
-
+            LoginEvent.VerifyToken -> getInitApp()
         }
     }
 
 
+    private fun getInitApp() = getInitAppUseCase( BaseUseCase.None()) {
+        it.either(::handleFailure, ::handleVerifyToken)
+    }
 
     private fun verifyLogin() {
 
@@ -66,8 +72,15 @@ class LoginViewModel
     }
 
     private fun handleLogin(success: Boolean) {
-        setState { LoginState.LoginSuccess(success = success) }
+        setEffect { LoginEffect.GoToHome }
     }
+
+    private fun handleVerifyToken(success: Boolean) {
+        if(success){
+            setEffect { LoginEffect.GoToHome }
+        }
+    }
+
 
     companion object Events {
         val loginClicked = LoginEvent.LoginClicked

@@ -7,4 +7,7 @@ import com.box.talana.presentation.base.UiEffect
 sealed class LoginEffect : UiEffect {
 
     data class ShowMessageFailure constructor(val failure: Failure) : LoginEffect()
+
+    object GoToHome : LoginEffect()
+
 }

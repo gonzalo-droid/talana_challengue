@@ -13,17 +13,13 @@ object LoginReducer {
         when (state) {
             is LoginState.Idle -> {}
             is LoginState.Loading -> viewState.loading()
-            is LoginState.LoginSuccess -> {
-                viewState.homeActivity()
-            }
-
         }
     }
 
     fun selectEffect(effect: LoginEffect) {
         when (effect) {
             is LoginEffect.ShowMessageFailure -> viewState.messageFailure(effect.failure)
-            else -> {}
+            is LoginEffect.GoToHome -> viewState.homeActivity()
         }
     }
 }

@@ -15,5 +15,9 @@ interface TalanaRepository {
 
     suspend fun feed(): Either<Failure, List<Feed>>
 
+    suspend fun verifyToken(): Either<Failure, Boolean>
+
+    suspend fun logout(): Either<Failure, Boolean>
+
     suspend fun contactId(contactId: Int): Either<Failure, Contact>
 }

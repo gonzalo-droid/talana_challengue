@@ -6,6 +6,4 @@ sealed class LoginState : UiState {
 
     object Idle : LoginState()
     object Loading : LoginState()
-    data class LoginSuccess constructor(val success: Boolean) : LoginState()
-
 }

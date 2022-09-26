@@ -6,4 +6,6 @@ sealed class LoginEvent : UiEvent {
 
     object LoginClicked : LoginEvent()
 
+    object VerifyToken : LoginEvent()
+
 }

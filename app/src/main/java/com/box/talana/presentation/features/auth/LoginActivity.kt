@@ -32,6 +32,8 @@ class LoginActivity : BaseActivityWithViewModel<ActivityLoginBinding, LoginViewM
 
     private fun observeUiStates() {
 
+        viewModel.setEvent(LoginEvent.VerifyToken)
+
         viewModel.apply {
             lifecycleScopeCreate(activity = this@LoginActivity, method = {
                 state.collect { state ->
