@@ -5,6 +5,5 @@ import com.box.talana.presentation.base.UiEvent
 sealed class LoginEvent : UiEvent {
 
     object LoginClicked : LoginEvent()
-    object RecoveredPasswordClicked : LoginEvent()
 
 }

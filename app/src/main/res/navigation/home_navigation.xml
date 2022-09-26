@@ -19,7 +19,7 @@
 
     <activity
         android:id="@+id/detailActivity"
-        android:name="com.box.talana.presentation.features.deatil.DetailActivity"
+        android:name="com.box.talana.presentation.features.detail.DetailActivity"
         android:label="activity_detail_course"
         tools:layout="@layout/activity_detail" />
 

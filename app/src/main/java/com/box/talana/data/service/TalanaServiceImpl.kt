@@ -3,6 +3,7 @@ package com.box.talana.data.service
 import com.box.talana.core.funtional.Either
 import com.box.talana.core.funtional.Failure
 import com.box.talana.data.model.request.LoginRequest
+import com.box.talana.data.model.response.ContactResponse
 import com.box.talana.data.model.response.FeedResponse
 import com.box.talana.data.model.response.LoginResponse
 import com.box.talana.data.network.NetworkHandler
@@ -24,5 +25,10 @@ class TalanaServiceImpl
     override suspend fun feed(): Either<Failure, List<FeedResponse>> {
         return networkHandler.callService { api.feed() }
     }
+
+    override suspend fun contactId(contactId: Int): Either<Failure, ContactResponse> {
+        return networkHandler.callService { api.contactById(contactId) }
+    }
+
 
 }

@@ -1,7 +1,9 @@
 package com.box.talana.data.mapper
 
 
+import com.box.talana.data.model.response.ContactResponse
 import com.box.talana.data.model.response.FeedResponse
+import com.box.talana.domian.model.Contact
 import com.box.talana.domian.model.Feed
 import javax.inject.Singleton
 
@@ -18,6 +20,17 @@ class TalanaMapperImpl : TalanaMapper {
                 description = it.description,
                 published = it.published,
                 authorId = it.authorId
+            )
+        }
+    }
+
+    override suspend fun contactToDomain(data: ContactResponse): Contact {
+        return data.let {
+            Contact(
+                id = it.id,
+                firstName = it.firstName,
+                lastName = it.lastName,
+                gender = it.gender
             )
         }
     }

@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Talana"
         tools:targetApi="31">
         <activity
-            android:name="com.box.talana.presentation.features.deatil.DetailActivity"
+            android:name="com.box.talana.presentation.features.detail.DetailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

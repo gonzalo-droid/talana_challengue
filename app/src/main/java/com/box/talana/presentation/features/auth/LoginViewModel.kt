@@ -23,13 +23,11 @@ class LoginViewModel
     override fun handleEvent(event: LoginEvent) {
         when (event) {
             LoginEvent.LoginClicked -> verifyLogin()
-            LoginEvent.RecoveredPasswordClicked -> goRecoveryPassword()
+
         }
     }
 
-    private fun goRecoveryPassword() {
 
-    }
 
     private fun verifyLogin() {
 

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.box.talana.domian.model.Feed
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.text.DecimalFormat
@@ -31,14 +32,6 @@ fun String.dateFormat(format: String): Date {
     return dateFormat.parse(this)
 }
 
-
-fun String.encode(): String {
-    return android.util.Base64.encodeToString(
-        this.toByteArray(charset("UTF-8")),
-        android.util.Base64.DEFAULT
-    )
-}
-
 fun String.html() : Spanned {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT)
@@ -47,21 +40,10 @@ fun String.html() : Spanned {
     }
 }
 
-fun String.decode(): String {
-    return String(android.util.Base64.decode(this, android.util.Base64.DEFAULT), charset("UTF-8"))
-}
 
-
-fun String.toBigDecimalReturnString(): String {
-    val double = this.toDouble()
-    val big = BigDecimal(double).setScale(2, BigDecimal.ROUND_HALF_UP).toDouble()
-    return big.toString()
-}
-
-
-infix fun Double.decimalFormat(format: String): String = DecimalFormat(format).format(this)
-
-infix fun Int.decimalFormat(format: String): String = DecimalFormat(format).format(this)
+@Suppress("DEPRECATION")
+infix fun String.putFeed(activity: Activity) =
+    activity.intent.extras!!.getSerializable(this) as Feed
 
 
 fun lifecycleScopeCreate(activity: Activity, method: suspend () -> Unit) =
